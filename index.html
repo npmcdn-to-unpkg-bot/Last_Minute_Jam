@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+	<div class="outer-wrapper">
+	<header>
+		<h1>Last Minute Jam</h1>
+	</header>
+	<section class="form">
+		<form action="" class="near-user">
+			<input type="search" name="user-location" id="user-location" placeholder="Retry with a new location!">
+			<input type="submit">
+			<p class="retry-geoLocation">Use your current location instead</p>
+		</form>
+	</section>
+	<section class="map">
+		<div id="mapid"></div>
+	</section>
+	<div class="start-overlay">
+		<h1>Last Minute Jam</h1>
+		<form action="" class="overlay-near-user">
+			<label for="overlay-user-location">Eleventh hour plans for live music fans</label>
+			<input type="search" name="user-location" id="overlay-user-location" placeholder="Your postal/zip code, or Neighborhood,City">
+			<input type="submit">
+			<span>Or</span>
+			<p class="locator">Use your current location</p>
+		</form>
+	</div>
+	</div>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+	<script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=RNRZNndoBDG4MS0SllzdUgQqqakeaC6n"></script>
+	<script src="assets/js/main.js"></script>
+</body>
+</html>
