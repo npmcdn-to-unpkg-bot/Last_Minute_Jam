@@ -1,4 +1,5 @@
 .start-overlay {
+	display: none;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -8,63 +9,93 @@
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background-image: url(../images/shutterstock_342254708.png);
+	background: black;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
 	z-index: 1000;
 	color: white;
 	h1 {
-		margin: 15px 0;
 		text-align: center;
-		text-shadow: 3px 3px 0 black;
-		font-size: 60px;
+		font-size: 65px;
 		text-transform: uppercase;
-		letter-spacing: 3px;
+		letter-spacing: 5px;
+		color: $accent-1;
 		@media all and (max-width: 768px) {
 			font-size: 50px;
 		}
-	}
-	label {
-		background-color: rgba(51, 51, 51, 0.9);
-		color: white;
-		padding: 20px;
-		letter-spacing: 1px;
-		text-shadow: 1px 1px black;
-		font-size: 18px;
-		@media all and (max-width: 500px) {
-			display: none;
+		@media all and (max-width: 580px) {
+			font-size: 40px;
 		}
 	}
-	input[type="search"] {
-	    width: 40%;
-	    height: 40px;
-		margin: 20px auto 10px auto;
-	    padding: 0 20px;
-	    border-radius: 10px;
-	    border: none;
-	    box-shadow: 0 0 15px black;
-	    @media all and (max-width: 500px) {
-	    	width: 80%;
-	    }
+	p {
+		padding: 20px 0;
+		text-align: center;
+		letter-spacing: 1.25px;
 	}
-	.locator {
-		width: 425px;
-		margin: 0 auto;
-		padding: 8px 25px;
-	    border-radius: 10px;
-	    border: 3px solid #5FC3B9;
-	    background-color: rgba(51, 51, 51, 0.9);
-	    color: #5FC3B9;
-	    font-weight: 700;
-	    text-align: center;
-	    text-transform: uppercase;
-	    letter-spacing: 1px;
-	    cursor: pointer;
-	    @media all and (max-width: 768px) {
-			width: 80%;
-	    }
+	.overlay-image { 
+		width: 250px;
+		@media all and (max-width: 580px) {
+			width: 200px;
+		}
+		img {
+			width: 100%; 
+		}
 	}
+	label {
+		color: white;
+		padding: 10px;
+		letter-spacing: 1px;
+		font-size: 18px;
+		cursor: pointer;
+		@media all and (max-width: 580px) {
+			font-size: 14px;
+		}
+	}
+	.or {
+		display: inline-block;
+		padding-top: 10px;
+		padding-bottom: 0;
+		border-bottom: 1px solid white;
+		font-size: 12px;
+	}
+	.option {
+		color: $accent-2;
+	}
+}
+.manual-location {
+	display: none;
+}
+input[type="search"] {
+    width: 40%;
+    height: 40px;
+	margin: 20px auto 10px auto;
+    padding: 0 20px;
+    border-radius: 10px;
+    border: 3px solid transparent;
+    outline: none;
+    &:focus {
+    	border: 3px solid $accent-1;
+    }
+    @media all and (max-width: 500px) {
+    	width: 80%;
+    }
+}
+.locator {
+	width: 425px;
+	margin: 0 auto;
+	padding: 8px 25px;
+    border-radius: 10px;
+    border: 3px solid $accent-1;
+    color: $accent-1;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    @media all and (max-width: 768px) {
+		width: 80%;
+    }
 }
 
 .loading-image {
@@ -76,7 +107,15 @@
 	left: 0;
 	background-color: rgba(0, 0, 0, 0.3);
 	text-align: center;
-	img {
+	.spinner {
 		margin: auto;
+		p {
+			padding-top: 20px;
+			text-transform: uppercase;
+		}
 	}
+}
+
+.geo-wait {
+	display: none;
 }

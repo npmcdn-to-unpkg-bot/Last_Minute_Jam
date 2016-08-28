@@ -1,16 +1,33 @@
 #mapid {
-  height: 70vh;
-  @media all and (max-width: 500px) {
-	height: 420px;
+  height: 85vh;
+  @media all and (max-width: 580px) {
+  	height: 80vh;
   }
 }
 
-.complete-billing {
-	font-family: 'Roboto', sans-serif;
-	font-size: 18px;
+.info {
+	padding: 10px 0;
+	.label {
+		display: inline-block;
+		float: left;
+		width: 20%;
+		font-family: 'Righteous', cursive;
+		font-size: 16px;
+		text-transform: uppercase;
+		color: $accent-1;
+		letter-spacing: 1px;
+	}
+	.details {
+		float: left;
+		width: 80%;
+		padding-left: 20px;
+		font-family: 'Libre Baskerville', serif;
+		font-size: 16px;
+	}
 }
 
 .leaflet-popup-content {
+	width: 275px;
 	margin: 0;
 	padding: 15px;
 	p {
@@ -31,16 +48,16 @@ iframe {
 }
 
 .leaflet-container a {
-	font-family: 'Roboto', sans-serif;
 	text-transform: uppercase;
 	letter-spacing: 1px;
+	color: $accent-2;
 }
 
 .tickets {
 	display: inline-block;
 	margin-left: -10px;
 	padding: 10px;
-	color: #5FC3B9;
+	color: $accent-2;
 }
 
 .noPlaycard {
@@ -48,10 +65,8 @@ iframe {
 	height: 80px;
 	margin: 0 auto;
 	padding: 5px;
-	border: 2px solid #5FC3B9;
+	border: 2px solid $accent-2;
 	p {
-		font-family: 'Roboto', sans-serif;
 		font-size: 16px;
-		color: #333;
 	}
 }

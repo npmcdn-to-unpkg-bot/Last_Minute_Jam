@@ -13,7 +13,7 @@ myApp.today = moment().format('YYYY-MM-DD');
 
 myApp.overlayFadeIn = function() {
 	$('.start-overlay').fadeIn();
-	$('.start-overlay').html(`<div class="loading-image"><img src="assets/images/ring-alt.svg"></div>`);
+	$('.start-overlay').html(`<div class="loading-image"><div class="spinner"><img src="assets/images/ring-alt.svg"><p>Finding shows in your area</p></div></div>`);
 	$('.start-overlay').delay(2000).fadeOut();
 	//Would need to return my promises to make this method work. With the forEach I'm using I don't think I can tell which call is the last
 	// $(document).ajaxStart(function() {
@@ -34,6 +34,8 @@ myApp.responsivePlaceholder = function() {
 myApp.geolocationEvents = function() {
 	if('geolocation' in navigator){
 	   navigator.geolocation.getCurrentPosition(success, error, options);
+	   $('.geolocation').hide();
+	   $('.geo-wait').show();
 	} else {
 		alert('Your browser does not support geolocation. Please enter your location manually')
 	}
@@ -58,6 +60,8 @@ myApp.geolocationEvents = function() {
 		//hit bands in town api to get events
 		myApp.findEvent(myApp.latLong.join(','), myApp.today);
 		//fade in loading screen
+		$('.geo-wait').hide();
+		$('.geolocation').show();
 		myApp.overlayFadeIn();
 	}
 	function error(err){
@@ -77,7 +81,6 @@ myApp.geolocationEvents = function() {
 		    // Timed out
 		    alert('timed out');
 		}
-	   // alert('Sorry, geolocation not available. Please enter your location manually.'); // alert the error message
 	}
 };
 
@@ -134,7 +137,6 @@ myApp.findUser = function(query) {
 		      
 		    // also, pass coordinates to bands in town API
 		    myApp.findEvent(myApp.specificLocation.join(','), myApp.today);
-		    console.log(myApp.specificLocation.join(','));
 		}
 	});
 };
@@ -155,7 +157,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/
 
 // Define a custom icon to use as a marker
 myApp.locationIcon = L.icon({
-	iconUrl: 'assets/images/musicmarker.png', // the image we want to use
+	iconUrl: 'assets/images/musicmarker.svg', // the image we want to use
 	iconSize: [30, 30], // dimensions of the icon
 	iconAnchor:   [15, -5], // point of the icon which will correspond to marker's location
 	popupAnchor: [0, 12.5] // position of the popup relative to the icon
@@ -174,8 +176,9 @@ myApp.findEvent = function(location, currentDate) {
 			reqUrl: myApp.bandsUrl,
 			params: {
 				location: location,
-				radius: 1,
+				radius: 2,
 				app_id: myApp.bandsName,
+				api_version: '2.0',
 				date: currentDate
 			}
 		}
@@ -229,7 +232,7 @@ myApp.getSpotifyTracks = function(events) {
  				myApp.getPopularTracks(artistId, eventDetails);
  			} 
  		} else {
- 			myApp.displayEvents(eventDetails, '<div class="noPlaycard"><p>This artist is not listed in Spotify, but you can check them out first hand at the venue!</p></div>');
+ 			myApp.displayEvents(eventDetails, '<div class="noPlaycard"><p>This artist is not listed in Spotify. Check them out at the venue!</p></div>');
  		}
  	});
  };
@@ -260,7 +263,8 @@ myApp.getSpotifyTracks = function(events) {
  	});
 
  	var venueCoordinates = [eventDetails.venue.latitude, eventDetails.venue.longitude];
- 	var completeBilling = displayArtistsArray.join(' and ') + ' at ' + eventDetails.venue.name;
+ 	var completeBilling = displayArtistsArray.join(' <br> ');
+ 	var showVenue = eventDetails.venue.name;
  	var ticketurl = eventDetails.ticket_url;
  	var showTime = eventDetails.datetime;
  	var time = moment(showTime, 'hh:mm:ss').format('h:mmA');
@@ -277,7 +281,10 @@ myApp.getSpotifyTracks = function(events) {
 	myApp.map.fitBounds(myApp.group.getBounds());
 
  	myApp.marker.bindPopup(
- 		`<h2 class="complete-billing">${completeBilling}</h2><p class="time">${time}</p><a href="${ticketurl}" class="tickets" target='blank'>Buy Tickets</a>${playcard}`
+ 		`<div class="info clearfix"><span class="label">Who</span><div class="complete-billing details">${completeBilling}</div></div>
+ 		<div class="info clearfix"><span class="label">When</span><span class="time details">${time}</span></div>
+ 		<div class="info clearfix"><span class="label">Where</span><span class="details">${showVenue}</span></div>
+ 		<a href="${ticketurl}" class="tickets" target='blank'>Buy Tickets</a>${playcard}`
  		);
  };
 
@@ -296,6 +303,9 @@ myApp.init = function() {
 	$('.locator').on('click', function() {
 		//user wants to use their current location
 		myApp.geolocationEvents();
+	});
+	$('.option').on('click', function() {
+		$('.manual-location').slideToggle('.manual-location');
 	});
 	myApp.searchAgain();
 };
