@@ -6,7 +6,7 @@ var myApp = {};
 //bandsintown api endpoint: http://api.bandsintown.com/events/search
 myApp.geoUrl = 'https://www.mapquestapi.com/geocoding/v1/address';
 myApp.geoKey = 'RNRZNndoBDG4MS0SllzdUgQqqakeaC6n';
-myApp.bandsUrl = 'http://api.bandsintown.com/events/search.json';
+myApp.bandsUrl = 'https://api.bandsintown.com/events/search.json';
 myApp.bandsName = 'makePlansApp'; 
 myApp.today = moment().format('YYYY-MM-DD');
 
