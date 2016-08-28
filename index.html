@@ -10,42 +10,42 @@
 </head>
 <body>
 	<div class="outer-wrapper">
-	<div class="map-heading clearfix">
-		<header>
-			<h1>LMJ</h1>
-		</header>
-		<section class="form">
-			<p class="try-again">Try a new location</p>
-			<form action="" class="near-user">
-				<p class="locator retry-geoLocation">Find Me</p>
+		<div class="map-heading clearfix">
+			<header>
+				<h1>LMJ</h1>
+			</header>
+			<section class="form">
+				<p class="try-again">Try a new location</p>
+				<form action="" class="near-user">
+					<p class="locator retry-geoLocation">Find Me</p>
+					<span class="or">Or</span>
+					<div>
+						<input type="search" name="user-location" id="user-location" placeholder="New location">
+						<input type="submit" value="Go!">
+					</div>
+				</form>
+			</section>
+		</div>
+		<section class="map">
+			<div id="mapid"></div>
+		</section>
+		<div class="start-overlay">
+			<h1>Last Minute Jam</h1>
+			<p>Looking for live music tonight?</p>
+			<div class="overlay-image">
+				<img src="assets/images/20.svg" alt="an illustration of digital equalizer bars">
+			</div>
+			<form action="" class="overlay-near-user">
+				<p class="locator geolocation">Find my Location!</p>
+				<div><img src="assets/images/ripple-small.svg" alt="a loading svg" class="geo-wait"></div>
 				<span class="or">Or</span>
-				<div>
-					<input type="search" name="user-location" id="user-location" placeholder="New location">
-					<input type="submit" value="Go!">
+				<label for="overlay-user-location" class="option">Type it in to help us find you</label>
+				<div class="manual-location">
+					<input type="search" name="user-location" id="overlay-user-location" placeholder="Your location">
+					<input type="submit" value="Find">
 				</div>
 			</form>
-		</section>
-	</div>
-	<section class="map">
-		<div id="mapid"></div>
-	</section>
-	<div class="start-overlay">
-		<h1>Last Minute Jam</h1>
-		<p>Looking for live music tonight?</p>
-		<div class="overlay-image">
-			<img src="assets/images/20.svg" alt="an illustration of digital equalizer bars">
 		</div>
-		<form action="" class="overlay-near-user">
-			<p class="locator geolocation">Find my Location!</p>
-			<div><img src="assets/images/ripple-small.svg" alt="a loading svg" class="geo-wait"></div>
-			<span class="or">Or</span>
-			<label for="overlay-user-location" class="option">Type it in to help us find you</label>
-			<div class="manual-location">
-				<input type="search" name="user-location" id="overlay-user-location" placeholder="Your location">
-				<input type="submit" value="Find">
-			</div>
-		</form>
-	</div>
 	</div>
 
 
