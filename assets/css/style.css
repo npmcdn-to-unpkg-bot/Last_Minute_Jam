@@ -195,17 +195,28 @@ input[type=submit] {
 }
 
 input[type="submit"] {
-  margin-bottom: 10px;
   margin-left: 20px;
   padding: 8px 15px;
   border-radius: 10px;
   border: 3px solid #0EC6CE;
-  background-color: black;
+  background-color: #0EC6CE;
   font-family: "Righteous", cursive;
-  color: #0EC6CE;
+  color: black;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: transparent;
+  color: #0EC6CE;
+}
+
+@media all and (max-width: 550px) {
+  input[type="submit"] {
+    width: 280px;
+  }
 }
 
 form {
@@ -264,8 +275,13 @@ form span {
   }
 }
 
+.start-overlay .sub-heading {
+  font-style: italic;
+  color: #B5D7D8;
+}
+
 .start-overlay p {
-  padding: 20px 0;
+  padding: 17px 0;
   text-align: center;
   letter-spacing: 1.25px;
 }
@@ -303,31 +319,65 @@ form span {
 }
 
 .start-overlay .or {
+  position: relative;
   display: inline-block;
-  padding-top: 30px;
-  padding-bottom: 0;
-  border-bottom: 1px solid #0EC6CE;
-  font-size: 12px;
+  padding: 15px 5px;
+  font-size: 16px;
+}
+
+.start-overlay .or::after {
+  position: absolute;
+  content: "";
+  top: calc(50% - 1px);
+  left: 100%;
+  height: 2px;
+  width: 20px;
+  background-color: #0EC6CE;
+}
+
+.start-overlay .or::before {
+  position: absolute;
+  content: "";
+  top: calc(50% - 1px);
+  right: 100%;
+  height: 2px;
+  width: 20px;
+  background-color: #0EC6CE;
 }
 
 .start-overlay .option {
-  padding: 30px 0;
+  width: 350px;
+  margin: 0 auto;
+  padding: 17px 0;
+  border-radius: 10px;
+  border: 3px solid #0EC6CE;
+  font-family: "Righteous", cursive;
   font-size: 20px;
   color: #0EC6CE;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: color 0.3s, background-color 0.3s;
 }
 
 .start-overlay .option:hover, .start-overlay .option:focus {
-  text-decoration: underline;
+  background-color: #0EC6CE;
+  color: black;
 }
 
 @media all and (max-width: 768px) {
   .start-overlay .option {
-    font-size: 24px;
+    display: none;
   }
 }
 
 .manual-location {
   display: none;
+}
+
+.manual-location input[type="submit"] {
+  height: 65px;
+  margin-left: 5px;
+  font-size: 20px;
 }
 
 @media all and (max-width: 550px) {
@@ -337,48 +387,79 @@ form span {
 }
 
 input[type="search"] {
-  width: 40%;
-  height: 40px;
+  width: 215px;
+  height: 62px;
   margin: 20px auto 10px auto;
   padding: 0 20px;
+  background-color: rgba(225, 225, 225, 0.2);
   border-radius: 10px;
   border: 3px solid transparent;
+  font-size: 20px;
+  color: #B5D7D8;
   outline: none;
 }
 
-input[type="search"]:focus {
+input[type="search"]:focus, input[type="search"]:hover {
   border: 3px solid #0EC6CE;
-}
-
-@media all and (max-width: 500px) {
-  input[type="search"] {
-    width: 80%;
-  }
-}
-
-.locator {
-  width: 425px;
-  margin: 0 auto;
-  padding: 8px 25px;
-  border-radius: 10px;
-  border: 3px solid #0EC6CE;
-  font-family: "Righteous", cursive;
-  font-weight: 700;
-  text-align: center;
-  color: #0EC6CE;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  cursor: pointer;
-}
-
-.locator:hover, .locator:focus {
-  background-color: #0EC6CE;
-  color: black;
 }
 
 @media all and (max-width: 768px) {
+  input[type="search"] {
+    margin-top: 0;
+  }
+}
+
+@media all and (max-width: 550px) {
+  input[type="search"] {
+    width: 240px;
+    margin-bottom: 15px;
+  }
+}
+
+::-webkit-input-placeholder {
+  color: #B5D7D8;
+}
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: #B5D7D8;
+}
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #B5D7D8;
+}
+
+:-ms-input-placeholder {
+  color: #B5D7D8;
+}
+
+.locator {
+  width: 350px;
+  margin: 0 auto;
+  padding: 8px 25px;
+  background-color: #0EC6CE;
+  border-radius: 10px;
+  border: 3px solid #0EC6CE;
+  font-size: 20px;
+  font-family: "Righteous", cursive;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  color: black;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.locator:hover, .locator:focus {
+  color: #0EC6CE;
+  background-color: transparent;
+}
+
+@media all and (max-width: 550px) {
   .locator {
-    width: 80%;
+    width: 280px;
   }
 }
 

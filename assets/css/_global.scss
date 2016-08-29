@@ -30,17 +30,24 @@ input[type=submit] {
 }
 
 input[type="submit"] {
-	margin-bottom: 10px;
 	margin-left: 20px;
 	padding: 8px 15px;
     border-radius: 10px;
     border: 3px solid $accent-1;
-    background-color: black;
+    background-color: $accent-1;
     font-family: $heading-font;
-    color: $accent-1;
+    color: black;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
+    transition: color 0.3s, background-color 0.3s;
+    &:hover {
+    	background-color: transparent;
+    	color: $accent-1;
+    }
+    @media all and (max-width: 550px) {
+    	width: 280px;
+    }
 }
 
 form {

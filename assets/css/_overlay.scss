@@ -28,8 +28,12 @@
 			font-size: 40px;
 		}
 	}
+	.sub-heading {
+		font-style: italic;
+		color: #B5D7D8;
+	}
 	p {
-		padding: 20px 0;
+		padding: 17px 0;
 		text-align: center;
 		letter-spacing: 1.25px;
 	}
@@ -56,66 +60,120 @@
 		letter-spacing: 2px;
 	}
 	.or {
+		position: relative;
 		display: inline-block;
-		padding-top: 30px;
-		padding-bottom: 0;
-		border-bottom: 1px solid #0EC6CE;
-		font-size: 12px;
+		padding: 15px 5px;
+		font-size: 16px;
+		&::after {
+			position: absolute;
+			content: "";
+			top: calc(50% - 1px);
+			left: 100%;
+			height: 2px;
+			width: 20px;
+			background-color: $accent-1;
+		}
+		&::before {
+			position: absolute;
+			content: "";
+			top: calc(50% - 1px);
+			right: 100%;
+			height: 2px;
+			width: 20px;
+			background-color: $accent-1;
+		}
 	}
 	.option {
-		padding: 30px 0;
+		width: 350px;
+		margin: 0 auto;
+		padding: 17px 0;
+		border-radius: 10px;
+  		border: 3px solid $accent-1;
+  		font-family: $heading-font;
 		font-size: 20px;
 		color: $accent-2;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		transition: color 0.3s, background-color 0.3s;
 		&:hover, &:focus {
-			text-decoration: underline;
+			background-color: $accent-1;
+			color: black;
 		}
 		@media all and (max-width: 768px) {
-			font-size: 24px;
+			display: none;
 		}
 	}
 }
 .manual-location {
 	display: none;
 	input[type="submit"] {
+		height: 65px;
+		margin-left: 5px;
+		font-size: 20px;
 		@media all and (max-width: 550px) {
 			margin-left: 0;
 		}
 	}
 }
 input[type="search"] {
-    width: 40%;
-    height: 40px;
+    width: 215px;
+    height: 62px;
 	margin: 20px auto 10px auto;
     padding: 0 20px;
+    background-color: rgba(225, 225, 225, 0.2);
     border-radius: 10px;
     border: 3px solid transparent;
+    font-size: 20px;
+    color: #B5D7D8;
     outline: none;
-    &:focus {
+    &:focus, &:hover {
     	border: 3px solid $accent-1;
     }
-    @media all and (max-width: 500px) {
-    	width: 80%;
+    @media all and (max-width: 768px) {
+    	margin-top: 0;
+    }
+    @media all and (max-width: 550px) {
+    	width: 240px;
+    	margin-bottom: 15px;
     }
 }
+::-webkit-input-placeholder {
+   color: #B5D7D8;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #B5D7D8;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #B5D7D8;  
+}
+
+:-ms-input-placeholder {  
+   color: #B5D7D8;  
+}
 .locator {
-	width: 425px;
+	width: 350px;
 	margin: 0 auto;
 	padding: 8px 25px;
+    background-color: $accent-1;
     border-radius: 10px;
     border: 3px solid $accent-1;
+    font-size: 20px;
     font-family: $heading-font;
     font-weight: 700;
     text-align: center;
-    color: $accent-1;
     text-transform: uppercase;
+    color: black;
     letter-spacing: 2px;
     cursor: pointer;
+    transition: color 0.3s, background-color 0.3s;
     &:hover, &:focus {
-    	background-color: $accent-1;
-    	color: black;
+    	color: $accent-1;
+    	background-color: transparent;
     }
-    @media all and (max-width: 768px) {
-		width: 80%;
+    @media all and (max-width: 550px) {
+    	width: 280px;
     }
 }
 
