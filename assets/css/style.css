@@ -541,6 +541,10 @@ section.form .try-again {
   padding-top: 20px;
   text-align: center;
   color: #0EC6CE;
+  font-family: "Righteous", cursive;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 @media all and (max-width: 580px) {
@@ -568,15 +572,15 @@ section.form form {
 section.form form .retry-geoLocation {
   display: inline-block;
   width: 100px;
-  padding: 8px 0;
-  color: #0EC6CE;
-  font-size: 12px;
+  padding: 6px 0;
+  color: black;
+  font-size: 14px;
   letter-spacing: 1px;
   cursor: pointer;
 }
 
 section.form form .retry-geoLocation:hover, section.form form .retry-geoLocation:focus {
-  color: black;
+  color: #0EC6CE;
 }
 
 section.form form .or {
@@ -590,13 +594,16 @@ section.form form div {
 
 section.form form input[type="search"] {
   width: 150px;
-  height: 35px;
-  margin-top: 5px;
-  margin-bottom: 10px;
+  height: 31px;
+  margin: 0;
   padding: 0 20px;
   border-radius: 10px;
-  border: none;
+  border: 3px solid transparent;
   background-color: white;
+}
+
+section.form form input[type="search"]:hover, section.form form input[type="search"]:focus {
+  border: 3px solid #0EC6CE;
 }
 
 @media all and (max-width: 500px) {
