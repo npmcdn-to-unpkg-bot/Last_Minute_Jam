@@ -175,6 +175,7 @@ body {
 }
 
 .outer-wrapper {
+  position: relative;
   max-width: 1500px;
   margin: 0 auto;
 }

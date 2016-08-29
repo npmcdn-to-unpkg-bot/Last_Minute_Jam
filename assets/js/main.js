@@ -292,6 +292,9 @@ myApp.getSpotifyTracks = function(events) {
 
 myApp.init = function() {
 	// myApp.findUser('Charlottetown,PE');
+	myApp.viewportHeight = $(window).innerHeight();
+	console.log(myApp.viewportHeight);
+	
 	myApp.responsivePlaceholder();
 	$('.overlay-near-user').on('submit', function(e) {
 		e.preventDefault();
