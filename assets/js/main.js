@@ -66,13 +66,14 @@ myApp.geolocationEvents = function() {
 		myApp.overlayFadeIn();
 	}
 	function error(err){
+
 		if (err.code == 0) {
 		    // Unknown error
 		    alert('unknown error');
 		}
 		if (err.code == 1) {
 		    // Access denied by user
-		    alert('Access denied by user');
+		    alert('Your settings do not allow Geolocation. Please manually enter your address. Or reset location settings.');
 		}
 		if (err.code == 2) {
 		    // Position unavailable
