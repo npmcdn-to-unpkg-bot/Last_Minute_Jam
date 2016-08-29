@@ -9,12 +9,13 @@
 	right: 0;
 	bottom: 0;
 	left: 0;
+	height: 100vh;
 	background: black;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
 	z-index: 1000;
-	color: white;
+	color: #0EC6CE;
 	h1 {
 		text-align: center;
 		font-size: 65px;
@@ -52,19 +53,35 @@
 			font-size: 14px;
 		}
 	}
+	p.locator {
+		letter-spacing: 2px;
+	}
 	.or {
 		display: inline-block;
-		padding-top: 10px;
+		padding-top: 30px;
 		padding-bottom: 0;
-		border-bottom: 1px solid white;
+		border-bottom: 1px solid #0EC6CE;
 		font-size: 12px;
 	}
 	.option {
+		padding: 30px 0;
+		font-size: 20px;
 		color: $accent-2;
+		&:hover, &:focus {
+			text-decoration: underline;
+		}
+		@media all and (max-width: 768px) {
+			font-size: 24px;
+		}
 	}
 }
 .manual-location {
 	display: none;
+	input[type="submit"] {
+		@media all and (max-width: 550px) {
+			margin-left: 0;
+		}
+	}
 }
 input[type="search"] {
     width: 40%;
@@ -87,12 +104,17 @@ input[type="search"] {
 	padding: 8px 25px;
     border-radius: 10px;
     border: 3px solid $accent-1;
-    color: $accent-1;
+    font-family: $heading-font;
     font-weight: 700;
     text-align: center;
+    color: $accent-1;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     cursor: pointer;
+    &:hover, &:focus {
+    	background-color: $accent-1;
+    	color: black;
+    }
     @media all and (max-width: 768px) {
 		width: 80%;
     }
@@ -111,7 +133,9 @@ input[type="search"] {
 		margin: auto;
 		p {
 			padding-top: 20px;
+			font-family: $heading-font;
 			text-transform: uppercase;
+			letter-spacing: 2px;
 		}
 	}
 }

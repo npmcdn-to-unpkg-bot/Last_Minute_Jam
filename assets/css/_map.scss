@@ -1,8 +1,9 @@
 #mapid {
-  height: 85vh;
-  @media all and (max-width: 580px) {
-  	height: 80vh;
-  }
+	display: none;
+	height: 75vh;
+	@media all and (max-width: 580px) {
+		height: 80vh;
+	}
 }
 
 .info {
@@ -11,11 +12,11 @@
 		display: inline-block;
 		float: left;
 		width: 20%;
-		font-family: 'Righteous', cursive;
+		font-family: $heading-font;
 		font-size: 16px;
 		text-transform: uppercase;
 		color: $accent-1;
-		letter-spacing: 1px;
+		letter-spacing: 2px;
 	}
 	.details {
 		float: left;
@@ -48,8 +49,9 @@ iframe {
 }
 
 .leaflet-container a {
+	font-family: $heading-font;
 	text-transform: uppercase;
-	letter-spacing: 1px;
+	letter-spacing: 2px;
 	color: $accent-2;
 }
 

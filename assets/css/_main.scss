@@ -8,6 +8,7 @@ header {
 	h1 {
 		width: 100%;
 		padding: 20px 30px;
+		font-family: $heading-font;
 		font-size: 55px;
 		letter-spacing: 4px;
 		color: white;
@@ -44,8 +45,10 @@ section.form {
 	span {
 		display: block;
 		margin: 0 auto;
+		font-family: $heading-font;
 		text-transform: uppercase;
-		color: white;
+		color: #0EC6CE;
+		letter-spacing: 2px;
 	}
 	form {
 		display: block;
@@ -60,6 +63,9 @@ section.form {
 			font-size: 12px;
 			letter-spacing: 1px;
 			cursor: pointer;
+			&:hover, &:focus {
+				color: black;
+			}
 		}
 		.or {
 			display: inline-block;
@@ -92,4 +98,18 @@ section.form {
 
 img {
 	max-width: 100%;
+}
+
+footer {
+	height: 10vh;
+	padding-top: 10px;
+	background-color: black;
+	text-align: center;
+	color: $accent-1;
+	a, a:visited {
+		color: $accent-1;
+	}
+	a:hover, a:focus {
+		color: white;
+	}
 }

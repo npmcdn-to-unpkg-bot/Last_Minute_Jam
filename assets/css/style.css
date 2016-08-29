@@ -189,6 +189,10 @@ p {
   padding-bottom: 10px;
 }
 
+input[type=submit] {
+  -webkit-border-radius: 0px;
+}
+
 input[type="submit"] {
   margin-bottom: 10px;
   margin-left: 20px;
@@ -196,10 +200,11 @@ input[type="submit"] {
   border-radius: 10px;
   border: 3px solid #0EC6CE;
   background-color: black;
+  font-family: "Righteous", cursive;
   color: #0EC6CE;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
 
 form {
@@ -214,7 +219,9 @@ form label {
 form span {
   display: block;
   padding-bottom: 10px;
+  font-family: "Righteous", cursive;
   text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .start-overlay {
@@ -228,12 +235,13 @@ form span {
   right: 0;
   bottom: 0;
   left: 0;
+  height: 100vh;
   background: black;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   z-index: 1000;
-  color: white;
+  color: #0EC6CE;
 }
 
 .start-overlay h1 {
@@ -290,20 +298,42 @@ form span {
   }
 }
 
+.start-overlay p.locator {
+  letter-spacing: 2px;
+}
+
 .start-overlay .or {
   display: inline-block;
-  padding-top: 10px;
+  padding-top: 30px;
   padding-bottom: 0;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #0EC6CE;
   font-size: 12px;
 }
 
 .start-overlay .option {
-  color: #0EE51C;
+  padding: 30px 0;
+  font-size: 20px;
+  color: #0EC6CE;
+}
+
+.start-overlay .option:hover, .start-overlay .option:focus {
+  text-decoration: underline;
+}
+
+@media all and (max-width: 768px) {
+  .start-overlay .option {
+    font-size: 24px;
+  }
 }
 
 .manual-location {
   display: none;
+}
+
+@media all and (max-width: 550px) {
+  .manual-location input[type="submit"] {
+    margin-left: 0;
+  }
 }
 
 input[type="search"] {
@@ -332,12 +362,18 @@ input[type="search"]:focus {
   padding: 8px 25px;
   border-radius: 10px;
   border: 3px solid #0EC6CE;
-  color: #0EC6CE;
+  font-family: "Righteous", cursive;
   font-weight: 700;
   text-align: center;
+  color: #0EC6CE;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   cursor: pointer;
+}
+
+.locator:hover, .locator:focus {
+  background-color: #0EC6CE;
+  color: black;
 }
 
 @media all and (max-width: 768px) {
@@ -363,7 +399,9 @@ input[type="search"]:focus {
 
 .loading-image .spinner p {
   padding-top: 20px;
+  font-family: "Righteous", cursive;
   text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .geo-wait {
@@ -385,6 +423,7 @@ header {
 header h1 {
   width: 100%;
   padding: 20px 30px;
+  font-family: "Righteous", cursive;
   font-size: 55px;
   letter-spacing: 4px;
   color: white;
@@ -432,8 +471,10 @@ section.form .try-again {
 section.form span {
   display: block;
   margin: 0 auto;
+  font-family: "Righteous", cursive;
   text-transform: uppercase;
-  color: white;
+  color: #0EC6CE;
+  letter-spacing: 2px;
 }
 
 section.form form {
@@ -451,6 +492,10 @@ section.form form .retry-geoLocation {
   font-size: 12px;
   letter-spacing: 1px;
   cursor: pointer;
+}
+
+section.form form .retry-geoLocation:hover, section.form form .retry-geoLocation:focus {
+  color: black;
 }
 
 section.form form .or {
@@ -493,8 +538,25 @@ img {
   max-width: 100%;
 }
 
+footer {
+  height: 10vh;
+  padding-top: 10px;
+  background-color: black;
+  text-align: center;
+  color: #0EC6CE;
+}
+
+footer a, footer a:visited {
+  color: #0EC6CE;
+}
+
+footer a:hover, footer a:focus {
+  color: white;
+}
+
 #mapid {
-  height: 85vh;
+  display: none;
+  height: 75vh;
 }
 
 @media all and (max-width: 580px) {
@@ -511,11 +573,11 @@ img {
   display: inline-block;
   float: left;
   width: 20%;
-  font-family: 'Righteous', cursive;
+  font-family: "Righteous", cursive;
   font-size: 16px;
   text-transform: uppercase;
   color: #0EC6CE;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
 
 .info .details {
@@ -549,16 +611,17 @@ iframe {
 }
 
 .leaflet-container a {
+  font-family: "Righteous", cursive;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #0EE51C;
+  letter-spacing: 2px;
+  color: #0EC6CE;
 }
 
 .tickets {
   display: inline-block;
   margin-left: -10px;
   padding: 10px;
-  color: #0EE51C;
+  color: #0EC6CE;
 }
 
 .noPlaycard {
@@ -566,7 +629,7 @@ iframe {
   height: 80px;
   margin: 0 auto;
   padding: 5px;
-  border: 2px solid #0EE51C;
+  border: 2px solid #0EC6CE;
 }
 
 .noPlaycard p {

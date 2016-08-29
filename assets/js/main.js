@@ -12,9 +12,10 @@ myApp.today = moment().format('YYYY-MM-DD');
 
 
 myApp.overlayFadeIn = function() {
+	$('#mapid').show();
 	$('.start-overlay').fadeIn();
 	$('.start-overlay').html(`<div class="loading-image"><div class="spinner"><img src="assets/images/ring-alt.svg"><p>Finding shows in your area</p></div></div>`);
-	$('.start-overlay').delay(2000).fadeOut();
+	$('.start-overlay').delay(3000).fadeOut();
 	//Would need to return my promises to make this method work. With the forEach I'm using I don't think I can tell which call is the last
 	// $(document).ajaxStart(function() {
  //        $('.start-overlay').html(`<div class="loading-image"><img src="assets/images/ring-alt.gif"></div>`);
@@ -169,7 +170,7 @@ myApp.markerArray = [];
 
 myApp.findEvent = function(location, currentDate) {
 	$.ajax({
-		url: 'http://proxy.hackeryou.com',
+		url: 'https://proxy.hackeryou.com',
 		method: 'GET',
 		format: 'json',
 		data: {
@@ -200,7 +201,7 @@ myApp.findEvent = function(location, currentDate) {
 
 myApp.getSpotifyTracks = function(events) {
 	events.reduce(function(promise, item) {
-		return promise.then(() => {
+		return promise.then(function() {
 			return new Promise(function (resolve) {
 				item.artists.forEach(function(artist, index) {
 					myApp.sampleMusic(artist, item).then(function () {
@@ -304,16 +305,17 @@ myApp.init = function() {
 		//user wants to use their current location
 		myApp.geolocationEvents();
 	});
-	$('.option').on('click', function() {
-		$('.manual-location').slideToggle('.manual-location');
-	});
+	if (matchMedia('only screen and (max-width: 768px)').matches) {
+		$('.manual-location').show();
+	} else {
+		$('.option').on('click', function() {
+			console.log('clicked');
+			$('.manual-location').slideToggle('.manual-location');
+		});
+	}
 	myApp.searchAgain();
 };
 
 $(function() {
 	myApp.init();
 }); //doc ready
-
-
-// '2cae7691583f500a6f48e2822087b4e2'
-//'http://api.opencagedata.com/geocode/v1/json'
