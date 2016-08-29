@@ -12,7 +12,6 @@ myApp.today = moment().format('YYYY-MM-DD');
 
 
 myApp.overlayFadeIn = function() {
-	$('#mapid').show();
 	$('.start-overlay').fadeIn();
 	$('.start-overlay').html(`<div class="loading-image"><div class="spinner"><img src="assets/images/ring-alt.svg"><p>Finding shows in your area</p></div></div>`);
 	$('.start-overlay').delay(3000).fadeOut();
@@ -63,6 +62,7 @@ myApp.geolocationEvents = function() {
 		//fade in loading screen
 		$('.geo-wait').hide();
 		$('.geolocation').show();
+		$('#mapid').show();
 		myApp.overlayFadeIn();
 	}
 	function error(err){
@@ -130,6 +130,7 @@ myApp.findUser = function(query) {
 		});
 		// myApp.findEvent(myApp.specificLocation.join(‘,’), today);
 		if(myApp.specificLocation) {
+
 		    // take the first one
 		    myApp.map.panTo(myApp.specificLocation);  
 		    //make a marker for user location and add to marker layer
