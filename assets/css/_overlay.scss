@@ -103,6 +103,11 @@
 			display: none;
 		}
 	}
+	input[type="submit"] {
+		@media all and (max-width: 550px) {
+    		width: 280px;
+    	}
+	}
 }
 .manual-location {
 	display: none;

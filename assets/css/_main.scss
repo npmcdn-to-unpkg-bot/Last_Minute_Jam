@@ -29,10 +29,9 @@ section.form {
 		width: calc(80% - 20px);
 	}
 	@media all and (max-width: 580px) {
-		display: flex;
 		width: 100%;
-		height: 20vh;
-		margin: 0;
+		height: auto;
+		margin-left: 0;
 	}
 	.try-again {
 		padding-top: 20px;
@@ -42,9 +41,6 @@ section.form {
 		font-size: 20px;
 		text-transform: uppercase;
 		letter-spacing: 2px;
-		@media all and (max-width: 580px) {
-			display: none;
-		}
 	}
 	span {
 		display: block;
@@ -70,10 +66,16 @@ section.form {
 			&:hover, &:focus {
 				color: $accent-1;
 			}
+			@media all and (max-width: 550px) {
+				width: 75px;
+			}
 		}
 		.or {
 			display: inline-block;
 			padding: 10px;
+			@media all and (max-width: 550px) {
+				padding: 3px;
+			}
 		}
 		div {
 			display: inline-block;
@@ -90,11 +92,18 @@ section.form {
 				border: 3px solid $accent-1;
 			}
 		    @media all and (max-width: 500px) {
-		    	margin-top: 10px;
+		    	width: 100px;
+		    	margin-top: 5px;
+		    	padding: 0 10px;
+		    	font-size: 16px;
 		    }
 		}
 		input[type="submit"] {
 			margin-left: 5px;
+			@media all and (max-width: 550px) {
+				width: 50px;
+				padding: 8px 0;
+			}
 		}
 		@media all and (max-width: 580px) {
 			margin: auto;

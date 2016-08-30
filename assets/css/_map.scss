@@ -1,7 +1,12 @@
 #mapid {
 	height: 85vh;
 	@media all and (max-width: 580px) {
-		height: 85vh;
+		height: 80vh;
+	}
+}
+.map-heading {
+	@media all and (max-width: 550px) {
+		height: 20vh;
 	}
 }
 
