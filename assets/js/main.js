@@ -190,17 +190,6 @@ myApp.findEvent = function(location, currentDate) {
 	});
 };
 
-// myApp.getSpotifyTracks = function(events) {
-// 	$('.results-container').empty();
-
-// 	events.forEach(function(item) {
-// 		var artistsArray = item.artists.forEach(function(artist, index) {
-// 			myApp.sampleMusic(artist, item);
-// 			// console.log(artist);
-// 		});
-// 	});
-// };
-
 myApp.getSpotifyTracks = function(events) {
 	events.reduce(function(promise, item) {
 		return promise.then(function() {
@@ -294,7 +283,6 @@ myApp.getSpotifyTracks = function(events) {
 myApp.init = function() {
 	// myApp.findUser('Charlottetown,PE');
 	myApp.viewportHeight = $(window).innerHeight();
-	console.log(myApp.viewportHeight);
 	
 	myApp.responsivePlaceholder();
 	$('.overlay-near-user').on('submit', function(e) {
@@ -314,7 +302,6 @@ myApp.init = function() {
 		$('.manual-location').show();
 	} else {
 		$('.option').on('click', function() {
-			console.log('clicked');
 			$('.manual-location').slideToggle('.manual-location');
 		});
 	}
