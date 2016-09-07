@@ -1,16 +1,14 @@
 var myApp = {};
 
-
-//user enters their location. Use mapquestapi to convert input into lat and long values
-
 //bandsintown api endpoint: http://api.bandsintown.com/events/search
 myApp.geoUrl = 'https://www.mapquestapi.com/geocoding/v1/address';
 myApp.geoKey = 'RNRZNndoBDG4MS0SllzdUgQqqakeaC6n';
 myApp.bandsUrl = 'https://api.bandsintown.com/events/search.json';
 myApp.bandsName = 'makePlansApp'; 
+//use moment.js to get today's date
 myApp.today = moment().format('YYYY-MM-DD');
 
-
+//add and remove loading screen
 myApp.overlayFadeIn = function() {
 	$('.start-overlay').fadeIn();
 	$('.start-overlay').html(`<div class="loading-image"><div class="spinner"><img src="assets/images/ring-alt.svg"><p>Finding shows in your area</p></div></div>`);
@@ -23,6 +21,7 @@ myApp.overlayFadeIn = function() {
  //    });
 }
 
+//Change placeholder text to fit into smaller input on mobile
 myApp.responsivePlaceholder = function() {
 	if ($(window).width() < 768 ) {
     	$('input[id="overlay-user-location"]').attr('placeholder', 'Enter Location');
@@ -31,6 +30,7 @@ myApp.responsivePlaceholder = function() {
 	}
 };
 
+//Find user location
 myApp.geolocationEvents = function() {
 	if('geolocation' in navigator){
 	   navigator.geolocation.getCurrentPosition(success, error, options);
@@ -86,6 +86,7 @@ myApp.geolocationEvents = function() {
 	}
 };
 
+//Remove all markers and popups from map
 myApp.resetMap = function() {
 	if(myApp.group) {
 		myApp.group.clearLayers();
@@ -110,7 +111,7 @@ myApp.searchAgain = function() {
 	});
 }
 
-
+//user enters their location. Use mapquestapi to convert input into lat and long values
 myApp.findUser = function(query) {
 	$.ajax({
 		url: myApp.geoUrl,
@@ -121,9 +122,7 @@ myApp.findUser = function(query) {
 			location: query
 		}
 	}).then(function(userLocation) {
-		// //drill down through data to find the lat & long, concatenate them into one variable
-		// //Feed user location to bands in town API
-		
+		// //drill down through data to find the lat & long, concatenate them into one variable	
 		userLocation.results.forEach(function(result) {
 		    result.locations.forEach(function(location) {
 		    	myApp.specificLocation = [location.latLng.lat, location.latLng.lng];
@@ -131,19 +130,18 @@ myApp.findUser = function(query) {
 		});
 		// myApp.findEvent(myApp.specificLocation.join(‘,’), today);
 		if(myApp.specificLocation) {
-
 		    // take the first one
 		    myApp.map.panTo(myApp.specificLocation);  
 		    //make a marker for user location and add to marker layer
 		    myApp.marker = L.marker(myApp.specificLocation);
-		    myApp.markerArray.push(myApp.marker);
-		      
+		    myApp.markerArray.push(myApp.marker); 
 		    // also, pass coordinates to bands in town API
 		    myApp.findEvent(myApp.specificLocation.join(','), myApp.today);
 		}
 	});
 };
 
+//map presets
 myApp.map = L.map('mapid', {
 	scrollWheelZoom: false,
 	zoom: 15,
@@ -166,10 +164,10 @@ myApp.locationIcon = L.icon({
 	popupAnchor: [0, 12.5] // position of the popup relative to the icon
 });
 
+//Define empty array to eventually push markers into
 myApp.markerArray = [];
 
-//make a call to the BiT API, search events. Search params: lat and long +- radius, time of show + 24 hours?
-
+//make a call to the BiT API, search events. Search params: lat and long +- radius, current date?
 myApp.findEvent = function(location, currentDate) {
 	$.ajax({
 		url: 'https://proxy.hackeryou.com',
@@ -190,6 +188,7 @@ myApp.findEvent = function(location, currentDate) {
 	});
 };
 
+//spotify API gets overwhelmed with multiple calls. Can't batch call unless you already have the Spotify ID, so need to slightly slow down the calls by forcing each promise to resolve before the next API call.
 myApp.getSpotifyTracks = function(events) {
 	events.reduce(function(promise, item) {
 		return promise.then(function() {
@@ -204,6 +203,7 @@ myApp.getSpotifyTracks = function(events) {
 	}, Promise.resolve());
 };
 
+//Spotify API call to get artist ID for each artist returned from the BiT API
  myApp.sampleMusic = function(artist, eventDetails) {
  	return $.ajax({
  		url: 'https://api.spotify.com/v1/search',
@@ -215,12 +215,15 @@ myApp.getSpotifyTracks = function(events) {
  		}
  	}).then(function(spotifyArtist) {	
  		var spotifyArtistArray = spotifyArtist.artists.items;
+ 		//Be strict about returned results--only accept if matches exactly
  		var filteredSpotifyArtistArray = spotifyArtistArray.filter(function(value) {
  			return value.name === artist.name;
  		});
  		if (filteredSpotifyArtistArray.length > 0) {
+ 			//If the artist is found, grab the ID. 
  			var artistId = filteredSpotifyArtistArray[0].id;
  			if (artistId !== undefined) {
+ 				//Hit the API again, if the artist is found
  				myApp.getPopularTracks(artistId, eventDetails);
  			} 
  		} else {
@@ -229,6 +232,7 @@ myApp.getSpotifyTracks = function(events) {
  	});
  };
 
+//Get the most popular track from the artist to display on the map
  myApp.getPopularTracks = function(id, eventDetails) {
  	$.ajax({
  		url: 'https://api.spotify.com/v1/artists/' + id + '/top-tracks',
@@ -239,6 +243,7 @@ myApp.getSpotifyTracks = function(events) {
  		}
  	}).then(function(popularTracks) {
  		if (popularTracks.tracks.length > 0) {
+ 			//Tracks come back in order. Grab the most popular one
  			var sampleSong = popularTracks.tracks[0].uri
  		}
 
@@ -249,7 +254,7 @@ myApp.getSpotifyTracks = function(events) {
  };
 
  myApp.displayEvents = function(eventDetails, playcard) {
-
+ 	//Define all variables that will display in popup
  	var displayArtistsArray = eventDetails.artists.map(function(item) {
  		return item.name;
  	});
@@ -260,6 +265,7 @@ myApp.getSpotifyTracks = function(events) {
  	var ticketurl = eventDetails.ticket_url;
  	var showTime = eventDetails.datetime;
  	var time = moment(showTime, 'hh:mm:ss').format('h:mmA');
+
  	myApp.marker = L.marker(venueCoordinates, {
 		icon: myApp.locationIcon, // the icon we created above
 		title: completeBilling, // some title text when we hover over the marker
@@ -268,7 +274,7 @@ myApp.getSpotifyTracks = function(events) {
 	});
 
 	myApp.markerArray.push(myApp.marker);
-	myApp.group = L.featureGroup(myApp.markerArray);//.addTo(myApp.map);
+	myApp.group = L.featureGroup(myApp.markerArray);
 	myApp.map.addLayer(myApp.group);
 	myApp.map.fitBounds(myApp.group.getBounds());
 
@@ -281,10 +287,9 @@ myApp.getSpotifyTracks = function(events) {
  };
 
 myApp.init = function() {
-	// myApp.findUser('Charlottetown,PE');
 	myApp.viewportHeight = $(window).innerHeight();
-	
 	myApp.responsivePlaceholder();
+
 	$('.overlay-near-user').on('submit', function(e) {
 		e.preventDefault();
 		var searchTerm = $('input[id=overlay-user-location]').val();
@@ -294,10 +299,12 @@ myApp.init = function() {
 		//fade in loading screen
 		myApp.overlayFadeIn();
 	});
+
 	$('.locator').on('click', function() {
 		//user wants to use their current location
 		myApp.geolocationEvents();
 	});
+
 	if (matchMedia('only screen and (max-width: 768px)').matches) {
 		$('.manual-location').show();
 	} else {
@@ -305,8 +312,9 @@ myApp.init = function() {
 			$('.manual-location').slideToggle('.manual-location');
 		});
 	}
+
 	myApp.searchAgain();
-};
+}; //init
 
 $(function() {
 	myApp.init();
