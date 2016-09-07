@@ -60,10 +60,10 @@ myApp.geolocationEvents = function() {
 		//hit bands in town api to get events
 		myApp.findEvent(myApp.latLong.join(','), myApp.today);
 		//fade in loading screen
+		myApp.overlayFadeIn();
 		$('.geo-wait').hide();
 		$('.geolocation').show();
 		$('#mapid').show();
-		myApp.overlayFadeIn();
 	}
 	function error(err){
 
@@ -107,6 +107,7 @@ myApp.searchAgain = function() {
 	$('.retry-geoLocation').on('click', function() {
 		//user wants to use their current location
 		myApp.resetMap();
+		// myApp.
 		myApp.geolocationEvents();	
 	});
 }

@@ -434,7 +434,7 @@ input[type="search"]:focus, input[type="search"]:hover {
   color: #B5D7D8;
 }
 
-.locator {
+.locator, .retry-geoLocation {
   width: 350px;
   margin: 0 auto;
   padding: 8px 25px;
@@ -452,13 +452,13 @@ input[type="search"]:focus, input[type="search"]:hover {
   transition: color 0.3s, background-color 0.3s;
 }
 
-.locator:hover, .locator:focus {
+.locator:hover, .locator:focus, .retry-geoLocation:hover, .retry-geoLocation:focus {
   color: #0EC6CE;
   background-color: transparent;
 }
 
 @media all and (max-width: 550px) {
-  .locator {
+  .locator, .retry-geoLocation {
     width: 280px;
   }
 }
